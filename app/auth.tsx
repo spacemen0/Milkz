@@ -19,7 +19,8 @@ export default function AuthPage() {
     return (
         <ThemedView style={[defaultStyles.container]}>
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{width:"80%"}} keyboardVerticalOffset={50}>
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{width: "80%"}}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 0} >
                 <Text style={styles.title}>{type === 'login' ? 'Welcome back' : 'Create your account'}</Text>
                 <View style={{marginBottom: 30}}>
                     <TextInput
@@ -61,10 +62,10 @@ const styles = StyleSheet.create({
     inputField: {
         marginVertical: 4,
         height: 50,
-        fontSize:18,
+        fontSize: 18,
         borderRadius: 12,
-        borderWidth:1,
-        borderColor:Colors.light.tint,
+        borderWidth: 1,
+        borderColor: Colors.light.tint,
         padding: 10,
         backgroundColor: '#fff',
     },
