@@ -29,7 +29,7 @@ export function WideButton({ text, onPress, style }: WideButtonProps) {
 const styles = StyleSheet.create({
     button: {
         borderRadius: 4,
-        padding: 5,
+        padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },

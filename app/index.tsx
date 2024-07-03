@@ -2,17 +2,14 @@ import {ThemedView} from "@/components/ThemedView";
 import {ThemedText} from "@/components/ThemedText";
 import {Image, View} from "react-native";
 import {WideButton} from "@/components/WideButton";
+import {defaultStyles} from "@/constants/DefaultStyles";
+import {useRouter} from "expo-router";
 
 export default function Index() {
-
+    const router = useRouter()
     return (
         <ThemedView
-            style={{
-                flex: 1,
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                paddingTop: 60
-            }}
+            style={[defaultStyles.container, {paddingTop: 60}]}
         >
 
             <Image source={require("../assets/images/cover.jpg")} style={{width: 350, height: 350}}></Image>
@@ -32,10 +29,12 @@ export default function Index() {
                 </ThemedText></View>
             <View style={{justifyContent: "center", flex: 1, alignItems: "center"}}>
                 <WideButton text="Start with me" onPress={() => {
-                    console.log("Signed In")
+                    console.log("Login")
+                    router.push("/auth?type=login")
                 }} style={{margin: 10, width: 350, height: 40}}/>
                 <WideButton text="Create account" onPress={() => {
-                    console.log("Signed Up")
+                    console.log("Sign Up")
+                    router.push("/auth?type=signup")
                 }} style={{width: 350, height: 40,}}/></View>
         </ThemedView>
     );
