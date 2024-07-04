@@ -12,7 +12,7 @@ import { defaultStyles } from "@/constants/DefaultStyles";
 import { useState } from "react";
 import { WideButton } from "@/components/WideButton";
 import { Colors } from "@/constants/Colors";
-import { save } from "./_layout";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function AuthPage() {
   const { type } = useLocalSearchParams<{ type: string }>();
@@ -20,7 +20,6 @@ export default function AuthPage() {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const onLogInPress = async () => {
-    save("isLoggedIn", "true");
     router.dismiss(1);
     router.replace("/(tabs)/quiz");
 
@@ -39,9 +38,9 @@ export default function AuthPage() {
         style={{ width: "80%" }}
         keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0}
       >
-        <Text style={styles.title}>
+        <ThemedText style={styles.title}>
           {type === "login" ? "Welcome back" : "Create your account"}
-        </Text>
+        </ThemedText>
         <View style={{ marginBottom: 30 }}>
           <TextInput
             autoCapitalize="none"
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
     alignSelf: "center",
+    paddingVertical: 10,
   },
   inputField: {
     marginVertical: 4,
