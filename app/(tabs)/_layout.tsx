@@ -8,29 +8,49 @@ export default function TabLayout() {
         headerShown: false,
         tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "grey",
+        tabBarStyle: { padding: 5 },
       }}
     >
       <Tabs.Screen
         name="quiz"
         options={{
+          tabBarAllowFontScaling: true,
+          tabBarLabelStyle: { fontSize: 14 },
           tabBarIcon: () => (
-            <MaterialIcons name="quiz" size={24} color="black" />
+            <MaterialIcons
+              name="quiz"
+              size={28}
+              style={{ marginBottom: -3 }}
+              color="black"
+            />
           ),
         }}
-      />{" "}
+      />
       <Tabs.Screen
         name="analysis"
         options={{
+          tabBarLabelStyle: { fontSize: 14 },
           tabBarIcon: () => (
-            <MaterialIcons name="bar-chart" size={24} color="black" />
+            <MaterialIcons
+              name="bar-chart"
+              size={28}
+              style={{ marginBottom: -3 }}
+              color="black"
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
+          tabBarLabelStyle: { fontSize: 14 },
           tabBarIcon: () => (
-            <MaterialIcons name="people" size={24} color="black" />
+            <MaterialIcons
+              name="people"
+              size={28}
+              style={{ marginBottom: -3 }}
+              color="black"
+            />
           ),
         }}
       />

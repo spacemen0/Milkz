@@ -38,7 +38,7 @@ export default function AuthPage() {
         style={{ width: "80%" }}
         keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0}
       >
-        <ThemedText style={styles.title}>
+        <ThemedText style={defaultStyles.title}>
           {type === "login" ? "Welcome back" : "Create your account"}
         </ThemedText>
         <View style={{ marginBottom: 30 }}>
@@ -74,13 +74,6 @@ const styles = StyleSheet.create({
     height: 60,
     alignSelf: "center",
     marginVertical: 80,
-  },
-  title: {
-    fontSize: 30,
-    marginBottom: 20,
-    fontWeight: "bold",
-    alignSelf: "center",
-    paddingVertical: 10,
   },
   inputField: {
     marginVertical: 4,

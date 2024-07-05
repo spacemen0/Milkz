@@ -1,9 +1,10 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { defaultStyles } from "@/constants/DefaultStyles";
-// import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import QuizCard from "@/components/QuizCard";
+import { MockData } from "@/constants/Data";
 
 // const ListItem = ({ index }: { index: string }) => {
 //   const [height, setHeight] = useState(100);
@@ -37,19 +38,10 @@ const quiz = () => {
   // };
   return (
     <ThemedView style={[defaultStyles.container, { paddingTop: 100 }]}>
-      <ThemedText>quiz</ThemedText>
+      <ThemedText style={defaultStyles.title}>quiz</ThemedText>
+      <QuizCard {...MockData[1]} />
     </ThemedView>
   );
 };
 
 export default quiz;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "cyan",
-    borderWidth: 2,
-    borderColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
