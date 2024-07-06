@@ -3,6 +3,7 @@ import type { TextProps, ViewProps } from "react-native";
 export type QuizInfo = {
   title: string;
   options: [string, string, string];
+  correctOption: 0 | 1 | 2;
 };
 
 export type ThemedViewProps = ViewProps & {

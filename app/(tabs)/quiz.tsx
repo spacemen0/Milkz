@@ -1,47 +1,32 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { defaultStyles } from "@/constants/DefaultStyles";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
+import React, {useState} from "react";
+import {Alert} from "react-native";
+import {defaultStyles} from "@/constants/DefaultStyles";
+import {ThemedView} from "@/components/ThemedView";
+import {ThemedText} from "@/components/ThemedText";
 import QuizCard from "@/components/QuizCard";
-import { MockData } from "@/constants/Data";
+import {MockData} from "@/constants/Data";
 
-// const ListItem = ({ index }: { index: string }) => {
-//   const [height, setHeight] = useState(100);
-//   useEffect(() => {
-//     setHeight(100);
-//   }, [index]);
-//   return (
-//     <Pressable
-//       onPress={() => {
-//         if (height === 100) {
-//           setHeight(200);
-//         } else {
-//           setHeight(100);
-//         }
-//       }}
-//       style={{ height }}
-//     >
-//       <View style={styles.container}>
-//         <Text>
-//           Web Item: {index}, size: {height}
-//         </Text>
-//       </View>
-//     </Pressable>
-//   );
-// };
+const Quiz = () => {
+    const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
 
-const quiz = () => {
-  // const flashListRef = useRef<FlashList<number>>(null);
-  // const renderItem = ({ index }: ListRenderItemInfo<number>) => {
-  //   return <ListItem index={index.toString()} />;
-  // };
-  return (
-    <ThemedView style={[defaultStyles.container, { paddingTop: 100 }]}>
-      <ThemedText style={defaultStyles.title}>quiz</ThemedText>
-      <QuizCard {...MockData[1]} />
-    </ThemedView>
-  );
+    const handlePress = (selectedOption: 0 | 1 | 2) => {
+        const currentQuiz = MockData[currentQuizIndex];
+        const isCorrect = currentQuiz.correctOption === selectedOption;
+
+        if (isCorrect) {
+            Alert.alert("Correct");
+        } else {
+            Alert.alert("Fail");
+        }
+        setCurrentQuizIndex((prevIndex) => (prevIndex + 1) % MockData.length);
+    };
+
+    return (
+        <ThemedView style={[defaultStyles.container, {paddingTop: 100}]}>
+            <ThemedText style={defaultStyles.title}>Quiz</ThemedText>
+            <QuizCard {...MockData[currentQuizIndex]} onPress={handlePress}/>
+        </ThemedView>
+    );
 };
 
-export default quiz;
+export default Quiz;

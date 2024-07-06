@@ -1,88 +1,112 @@
-import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { ThemedView } from "@/components/ThemedView";
-import { defaultStyles } from "@/constants/DefaultStyles";
-import { useState } from "react";
-import { WideButton } from "@/components/WideButton";
-import { Colors } from "@/constants/Colors";
-import { ThemedText } from "@/components/ThemedText";
+import React, {useState} from "react";
+import {KeyboardAvoidingView, Platform, StyleSheet, TextInput, View,} from "react-native";
+import {useLocalSearchParams, useRouter} from "expo-router";
+import {ThemedView} from "@/components/ThemedView";
+import {defaultStyles} from "@/constants/DefaultStyles";
+import {WideButton} from "@/components/WideButton";
+import {ThemedText} from "@/components/ThemedText";
+import {useThemeColor} from "@/hooks/useThemeColor";
 
 export default function AuthPage() {
-  const { type } = useLocalSearchParams<{ type: string }>();
-  const router = useRouter();
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const onLogInPress = async () => {
-    router.dismiss(1);
-    router.replace("/(tabs)/quiz");
+    const {type} = useLocalSearchParams<{ type: string }>();
+    const router = useRouter();
+    const placeholderTextColor = useThemeColor({}, "text");
+    const [emailAddress, setEmailAddress] = useState("");
+    const [password, setPassword] = useState("");
 
-    console.log("Logged In!");
-  };
-  const onSignUpPress = async () => {
-    router.dismiss(1);
-    router.replace("/(tabs)/quiz");
+    const onLogInPress = async () => {
+        router.dismiss(1);
+        router.replace("/(tabs)/quiz");
 
-    console.log("Signed Up!");
-  };
-  return (
-    <ThemedView style={[defaultStyles.container]}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ width: "80%" }}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0}
-      >
-        <ThemedText style={defaultStyles.title}>
-          {type === "login" ? "Welcome back" : "Create your account"}
-        </ThemedText>
-        <View style={{ marginBottom: 30 }}>
-          <TextInput
-            autoCapitalize="none"
-            placeholder="john@apple.com"
-            value={emailAddress}
-            onChangeText={setEmailAddress}
-            style={styles.inputField}
-          />
-          <TextInput
-            placeholder="password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            style={styles.inputField}
-          />
-        </View>
+        console.log("Logged In!");
+    };
 
-        {type === "login" ? (
-          <WideButton onPress={onLogInPress} text="Login" />
-        ) : (
-          <WideButton onPress={onSignUpPress} text="Sign Up" />
-        )}
-      </KeyboardAvoidingView>
-    </ThemedView>
-  );
+    const onSignUpPress = async () => {
+        router.dismiss(1);
+        router.replace("/(tabs)/quiz");
+
+        console.log("Signed Up!");
+    };
+
+    return (
+        <ThemedView style={[defaultStyles.container, styles.container]}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.keyboardAvoidingView}
+                keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0}
+            >
+                <ThemedText style={defaultStyles.title}>
+                    {type === "login" ? "Welcome back" : "Create your account"}
+                </ThemedText>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        autoCapitalize="none"
+                        placeholder="john@apple.com"
+                        value={emailAddress}
+                        onChangeText={setEmailAddress}
+                        style={styles.inputField}
+                        placeholderTextColor={placeholderTextColor}
+                    />
+                    <TextInput
+                        placeholder="password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                        style={styles.inputField}
+                        placeholderTextColor={placeholderTextColor}
+                    />
+                </View>
+
+                {type === "login" ? (
+                    <WideButton
+                        onPress={onLogInPress}
+                        text="Login"
+                        style={styles.button}
+                    />
+                ) : (
+                    <WideButton
+                        onPress={onSignUpPress}
+                        text="Sign Up"
+                        style={styles.button}
+                    />
+                )}
+            </KeyboardAvoidingView>
+        </ThemedView>
+    );
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    width: 60,
-    height: 60,
-    alignSelf: "center",
-    marginVertical: 80,
-  },
-  inputField: {
-    marginVertical: 4,
-    height: 50,
-    fontSize: 18,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: Colors.light.tint,
-    padding: 10,
-    backgroundColor: "#fff",
-  },
+    container: {
+        padding: 20,
+    },
+    keyboardAvoidingView: {
+        width: "100%",
+        alignItems: "center",
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginBottom: 20,
+    },
+    inputContainer: {
+        width: "100%",
+        marginBottom: 30,
+    },
+    inputField: {
+        width: "100%",
+        height: 50,
+        fontSize: 18,
+        borderRadius: 12,
+        borderWidth: 1,
+        padding: 10,
+        marginVertical: 8,
+    },
+    button: {
+        width: "100%",
+        height: 50,
+
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });
