@@ -6,7 +6,9 @@ import {ThemedText} from "@/components/ThemedText";
 const analysis = () => {
     return (
         <ThemedView style={defaultStyles.container}>
-            <ThemedText style={defaultStyles.title}>analysis</ThemedText>
+            <ThemedText style={defaultStyles.title} type="title">
+                analysis
+            </ThemedText>
         </ThemedView>
     );
 };

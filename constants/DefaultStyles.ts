@@ -8,7 +8,6 @@ export const defaultStyles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    marginBottom: 20,
     fontWeight: "bold",
     alignSelf: "center",
     paddingVertical: 10,

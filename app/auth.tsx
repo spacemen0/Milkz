@@ -35,7 +35,10 @@ export default function AuthPage() {
                 style={styles.keyboardAvoidingView}
                 keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0}
             >
-                <ThemedText style={defaultStyles.title}>
+                <ThemedText
+                    style={[defaultStyles.title, {marginBottom: 20}]}
+                    type="title"
+                >
                     {type === "login" ? "Welcome back" : "Create your account"}
                 </ThemedText>
                 <View style={styles.inputContainer}>

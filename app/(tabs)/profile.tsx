@@ -9,7 +9,9 @@ const profile = () => {
     const router = useRouter();
     return (
         <ThemedView style={defaultStyles.container}>
-            <ThemedText style={defaultStyles.title}>profile</ThemedText>
+            <ThemedText style={defaultStyles.title} type="title">
+                profile
+            </ThemedText>
             <WideButton
                 text="Log Out"
                 onPress={() => {

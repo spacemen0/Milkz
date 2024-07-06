@@ -10,7 +10,7 @@ export const MockData: QuizInfo[] = [
     question:
       "Which band is known for their hit song 'Smells Like Teen Spirit'?",
     answers: ["Nirvana", "Pearl Jam", "Soundgarden"],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question: "Which band's debut album is 'Is This It'?",
@@ -20,12 +20,12 @@ export const MockData: QuizInfo[] = [
   {
     question: "Which band's lead singer is Win Butler?",
     answers: ["Arcade Fire", "The National", "Fleet Foxes"],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
   {
     question: "What is the debut album of Vampire Weekend called?",
     answers: ["Vampire Weekend", "Contra", "Modern Vampires of the City"],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question:
@@ -41,27 +41,27 @@ export const MockData: QuizInfo[] = [
   {
     question: "What is the name of the first studio album by Tame Impala?",
     answers: ["Innerspeaker", "Lonerism", "Currents"],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question: "Which band's album 'Boxer' features the song 'Fake Empire'?",
     answers: ["The National", "Fleet Foxes", "Bon Iver"],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
   {
     question: "What is the name of the lead singer of The Shins?",
     answers: ["James Mercer", "Ben Gibbard", "Sam Beam"],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
   {
     question: "Which band released the album 'Teen Dream'?",
     answers: ["Beach House", "Real Estate", "Deerhunter"],
-    correctAnswer: 0,
+    correctAnswer: 1,
   },
   {
     question: "What genre is associated with the band Spoon?",
     answers: ["Indie rock", "Post-punk revival", "Shoegaze"],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question:
@@ -77,7 +77,7 @@ export const MockData: QuizInfo[] = [
   {
     question: "Which band released the album 'Attack on Memory'?",
     answers: ["Cloud Nothings", "Wavves", "The Men"],
-    correctAnswer: 0,
+    correctAnswer: 2,
   },
   {
     question: "What is the name of the first studio album by Sufjan Stevens?",
