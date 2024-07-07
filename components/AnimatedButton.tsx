@@ -48,14 +48,7 @@ export function AnimatedButton({
       disabled={disabled}
       style={[styles.button, style]}
     >
-      <Animated.View
-        style={[
-          correctAnswer !== undefined
-            ? animatedStyle
-            : { backgroundColor: backgroundColor },
-          styles.animatedView,
-        ]}
-      >
+      <Animated.View style={[animatedStyle, styles.animatedView]}>
         <ThemedText
           darkColor="#11181C"
           lightColor="#ECEDEE"
