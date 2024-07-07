@@ -9,14 +9,7 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-
-interface AnimatedWideButtonProps {
-  text: string;
-  onPress: () => void;
-  disabled?: boolean;
-  style?: ViewStyle;
-  correctAnswer?: boolean | undefined; // true for correct, false for incorrect
-}
+import { AnimatedWideButtonProps as AnimatedButtonProps } from "@/constants/Types";
 
 export function AnimatedButton({
   text,
@@ -24,7 +17,7 @@ export function AnimatedButton({
   disabled = false,
   style,
   correctAnswer = undefined,
-}: AnimatedWideButtonProps) {
+}: AnimatedButtonProps) {
   const backgroundColor = useThemeColor(
     { light: Colors.dark.background, dark: Colors.light.background },
     "background"
@@ -38,10 +31,9 @@ export function AnimatedButton({
         correctAnswer ? "green" : "red",
         { duration: 500, easing: Easing.linear }
       );
+    } else {
+      animatedBackgroundColor.value = backgroundColor;
     }
-    // else {
-    //   animatedBackgroundColor.value = backgroundColor;
-    // }
   }, [correctAnswer, backgroundColor]);
 
   const animatedStyle = useAnimatedStyle(() => {

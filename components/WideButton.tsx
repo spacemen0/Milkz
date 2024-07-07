@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
-  TouchableNativeFeedback,
-  TouchableHighlight,
-} from "react-native";
+import { StyleSheet, ViewStyle, TouchableHighlight } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Colors } from "@/constants/Colors"; // Adjust the import according to your project structure
+import { Colors } from "@/constants/Colors";
 
 interface WideButtonProps {
   text: string;
