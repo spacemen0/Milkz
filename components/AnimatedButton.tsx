@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { Pressable, StyleSheet, ViewStyle } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/utils/Colors";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import { AnimatedWideButtonProps as AnimatedButtonProps } from "@/constants/Types";
+import { AnimatedWideButtonProps as AnimatedButtonProps } from "@/utils/Types";
 
 export function AnimatedButton({
   text,

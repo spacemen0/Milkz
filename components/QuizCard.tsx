@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/utils/Colors";
 import { AnimatedButton } from "./AnimatedButton";
 
 const QuizCard = ({

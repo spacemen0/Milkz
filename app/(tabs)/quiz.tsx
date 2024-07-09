@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { defaultStyles } from "@/constants/DefaultStyles";
+import { defaultStyles } from "@/utils/DefaultStyles";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import QuizCard from "@/components/QuizCard";
-import { MockData } from "@/constants/Data";
+import { MockData } from "@/utils/Data";
 import Animated, {
   Easing,
   runOnJS,

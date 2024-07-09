@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, ViewStyle, TouchableHighlight } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/utils/Colors";
 
 interface WideButtonProps {
   text: string;
