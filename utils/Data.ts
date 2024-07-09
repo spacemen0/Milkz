@@ -1,5 +1,5 @@
 import { Quiz } from "./Types";
-export const MockData: Quiz[] = [
+export const Data: Quiz[] = [
   {
     id: 0,
     genre: "Alternative Rock",

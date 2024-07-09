@@ -4,7 +4,7 @@ import { defaultStyles } from "@/utils/DefaultStyles";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import QuizCard from "@/components/QuizCard";
-import { MockData } from "@/utils/Data";
+import { Data } from "@/utils/Data";
 import Animated, {
   Easing,
   runOnJS,
@@ -20,7 +20,7 @@ const Quiz = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const opacity = useSharedValue(1);
   const translateY = useSharedValue(0);
-  console.log(useMMKVString("user.name", storage)[0]);
+  console.log(useMMKVString("username", storage)[0]);
   const handlePress = (selectedOption: 0 | 1 | 2) => {
     if (isAnimating) return;
 
@@ -53,7 +53,7 @@ const Quiz = () => {
   };
 
   const updateQuizIndex = () => {
-    setCurrentQuizIndex((prevIndex) => (prevIndex + 1) % MockData.length);
+    setCurrentQuizIndex((prevIndex) => (prevIndex + 1) % Data.length);
   };
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -69,12 +69,12 @@ const Quiz = () => {
         Your Daily Quiz
       </ThemedText>
       <ThemedText style={[styles.subtext]} type="subtitle">
-        Question {currentQuizIndex + 1} of {MockData.length}
+        Question {currentQuizIndex + 1} of {Data.length}
       </ThemedText>
       <View style={styles.quizContainer}>
         <Animated.View style={[animatedStyle, styles.quizCardContainer]}>
           <QuizCard
-            {...MockData[currentQuizIndex]}
+            {...Data[currentQuizIndex]}
             onPress={handlePress}
             disabled={isAnimating}
           />
