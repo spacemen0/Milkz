@@ -1,6 +1,6 @@
 import type { TextProps, ViewProps, ViewStyle } from "react-native";
 
-export type QuizInfo = {
+export type Quiz = {
   id: number;
   genre: QuizGenre;
   difficulty: Difficulty;

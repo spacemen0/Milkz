@@ -12,13 +12,15 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { MMKV, useMMKVString } from "react-native-mmkv";
+import { storage } from "@/utils/Storage";
 
 const Quiz = () => {
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const opacity = useSharedValue(1);
   const translateY = useSharedValue(0);
-
+  console.log(useMMKVString("user.name", storage)[0]);
   const handlePress = (selectedOption: 0 | 1 | 2) => {
     if (isAnimating) return;
 

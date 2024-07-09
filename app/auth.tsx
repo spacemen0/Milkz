@@ -12,6 +12,7 @@ import { defaultStyles } from "@/utils/DefaultStyles";
 import { WideButton } from "@/components/WideButton";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { storage } from "@/utils/Storage";
 
 export default function AuthPage() {
   const { type } = useLocalSearchParams<{ type: string }>();
@@ -23,7 +24,7 @@ export default function AuthPage() {
   const onLogInPress = async () => {
     router.dismiss(1);
     router.replace("/(tabs)/quiz");
-
+    storage.set("user.name", emailAddress);
     console.log("Logged In!");
   };
 
