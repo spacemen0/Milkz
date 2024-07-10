@@ -20,10 +20,8 @@ const Quiz = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const opacity = useSharedValue(1);
   const translateY = useSharedValue(0);
-  console.log(useMMKVString("username", storage)[0]);
   const handlePress = (selectedOption: 0 | 1 | 2) => {
     if (isAnimating) return;
-
     setIsAnimating(true);
     setTimeout(() => {
       translateY.value = withTiming(10, {
@@ -37,7 +35,7 @@ const Quiz = () => {
           runOnJS(updateQuizIndex)();
           translateY.value = 10;
           opacity.value = withTiming(1, {
-            duration: 500,
+            duration: 1000,
             easing: Easing.linear,
           });
           translateY.value = withTiming(
@@ -74,7 +72,7 @@ const Quiz = () => {
       <View style={styles.quizContainer}>
         <Animated.View style={[animatedStyle, styles.quizCardContainer]}>
           <QuizCard
-            {...Data[currentQuizIndex]}
+            quiz={Data[currentQuizIndex]}
             onPress={handlePress}
             disabled={isAnimating}
           />

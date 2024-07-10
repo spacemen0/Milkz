@@ -1,14 +1,5 @@
 import type { TextProps, ViewProps, ViewStyle } from "react-native";
 
-export type Quiz = {
-  id: number;
-  genre: QuizGenre;
-  difficulty: Difficulty;
-  question: string;
-  answers: [string, string, string];
-  correctAnswer: 0 | 1 | 2;
-};
-
 export type ThemedViewProps = ViewProps & {
   lightColor?: string;
   darkColor?: string;
@@ -27,6 +18,14 @@ export type AnimatedWideButtonProps = {
   style?: ViewStyle;
   correctAnswer?: boolean | undefined;
 };
+export type Quiz = {
+  id: number;
+  genre: QuizGenre;
+  difficulty: Difficulty;
+  question: string;
+  answers: [string, string, string];
+  correctAnswer: 0 | 1 | 2;
+};
 
 export type QuizGenre =
   | "Shoegaze"
@@ -42,3 +41,12 @@ export type QuizGenre =
   | "Ambient";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
+
+export type AnswerSheet = {
+  id: number;
+  username: string;
+  quizId: number;
+  selectedAnswer: 0 | 1 | 2;
+  isCorrect: boolean;
+  timestamp: string;
+};

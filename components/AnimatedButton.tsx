@@ -29,7 +29,7 @@ export function AnimatedButton({
     if (correctAnswer !== undefined) {
       animatedBackgroundColor.value = withTiming(
         correctAnswer ? "green" : "red",
-        { duration: 500, easing: Easing.linear }
+        { duration: 300, easing: Easing.linear }
       );
     } else {
       animatedBackgroundColor.value = backgroundColor;
@@ -52,7 +52,12 @@ export function AnimatedButton({
         <ThemedText
           darkColor="#11181C"
           lightColor="#ECEDEE"
-          style={{ fontWeight: "bold", fontSize: 20, textAlign: "center" }}
+          style={{
+            fontWeight: "bold",
+            fontSize: 20,
+            textAlign: "center",
+            paddingVertical: 4,
+          }}
         >
           {text}
         </ThemedText>

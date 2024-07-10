@@ -5,38 +5,50 @@ import { ThemedText } from "./ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Colors } from "@/utils/Colors";
 import { AnimatedButton } from "./AnimatedButton";
+import { Quiz } from "@/utils/Types";
+import { addAnswerSheet } from "@/utils/Database";
+import { storage } from "@/utils/Storage";
+import { useSQLiteContext } from "expo-sqlite";
+import { getCurrentTimeFormatted } from "@/utils/Helpers";
 
 const QuizCard = ({
-  question,
-  answers,
-  correctAnswer,
+  quiz,
   onPress,
   disabled,
 }: {
-  question: string;
-  answers: [string, string, string];
-  correctAnswer: 0 | 1 | 2;
+  quiz: Quiz;
   onPress: (option: 0 | 1 | 2) => void;
   disabled: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const username = storage.getString("username");
+  const db = useSQLiteContext();
   const borderColor = useThemeColor(
     { light: Colors.light.text, dark: Colors.dark.text },
     "text"
   );
   useEffect(() => {
     setSelectedOption(null);
-  }, [question, answers]);
-  const handlePress = (index: 0 | 1 | 2) => {
+  }, [quiz]);
+  const handlePress = async (index: 0 | 1 | 2) => {
     if (disabled) return;
     setSelectedOption(index);
     onPress(index);
+    username &&
+      (await addAnswerSheet(
+        db,
+        username,
+        quiz.id,
+        index,
+        getCurrentTimeFormatted(),
+        index === quiz.correctAnswer
+      ));
   };
 
   return (
     <ThemedView style={[styles.cardContainer, { borderColor: borderColor }]}>
-      <ThemedText style={styles.cardTitle}>{question}</ThemedText>
-      {answers.map((text, index) => (
+      <ThemedText style={styles.cardTitle}>{quiz.question}</ThemedText>
+      {quiz.answers.map((text, index) => (
         <AnimatedButton
           text={text}
           key={index}
@@ -44,7 +56,7 @@ const QuizCard = ({
           onPress={() => handlePress(index as 0 | 1 | 2)}
           disabled={disabled}
           correctAnswer={
-            selectedOption === index ? index === correctAnswer : undefined
+            selectedOption === index ? index === quiz.correctAnswer : undefined
           }
         />
       ))}
