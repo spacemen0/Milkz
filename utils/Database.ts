@@ -128,3 +128,31 @@ export const getAnswerSheetsByUser = async (
     return [];
   }
 };
+
+export const getRandomUnansweredQuiz = async (
+  db: SQLiteDatabase,
+  username: string
+): Promise<Quiz | null> => {
+  try {
+    const answeredQuizzes = await db.getAllAsync<number>(
+      "SELECT quizId FROM answersheets WHERE username = ?",
+      [username]
+    );
+    const answeredQuizIds = new Set(answeredQuizzes);
+
+    const allQuizzes = await getQuizzes(db);
+    const unansweredQuizzes = allQuizzes.filter(
+      (quiz) => !answeredQuizIds.has(quiz.id)
+    );
+
+    if (unansweredQuizzes.length > 0) {
+      const randomIndex = Math.floor(Math.random() * unansweredQuizzes.length);
+      return unansweredQuizzes[randomIndex];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting random unanswered quiz:", error);
+    return null;
+  }
+};

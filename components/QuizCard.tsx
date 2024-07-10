@@ -48,6 +48,10 @@ const QuizCard = ({
   return (
     <ThemedView style={[styles.cardContainer, { borderColor: borderColor }]}>
       <ThemedText style={styles.cardTitle}>{quiz.question}</ThemedText>
+      <ThemedText
+        style={styles.cardSubtitle}
+      >{`[${quiz.difficulty}]`}</ThemedText>
+      <ThemedText style={styles.cardSubtitle}>{`[${quiz.genre}]`}</ThemedText>
       {quiz.answers.map((text, index) => (
         <AnimatedButton
           text={text}
@@ -78,6 +82,10 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 24,
     paddingVertical: 2,
+    textAlign: "center",
+  },
+  cardSubtitle: {
+    fontSize: 20,
     textAlign: "center",
   },
   wideButton: {
