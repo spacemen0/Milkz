@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   wideButton: {
-    marginTop: 20,
+    marginTop: 10,
   },
 });
 

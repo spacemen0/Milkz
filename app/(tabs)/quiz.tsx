@@ -92,7 +92,7 @@ const QuizComponent = () => {
   }
 
   return (
-    <ThemedView style={[defaultStyles.container, { paddingTop: 100 }]}>
+    <ThemedView style={[defaultStyles.container, { paddingTop: 50 }]}>
       <ThemedText style={[defaultStyles.title]} type="title">
         Your Daily Quiz
       </ThemedText>

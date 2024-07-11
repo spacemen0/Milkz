@@ -45,11 +45,11 @@ export default function AuthPage() {
       return false;
     }
 
-    const passwordComplexityRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    const passwordComplexityRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     if (!passwordComplexityRegex.test(password)) {
       Alert.alert(
         "😠",
-        "Password must contain at least one letter and one number."
+        "Password must contain at least one uppercase letter, one lowercase letter, and one number."
       );
       return false;
     }
