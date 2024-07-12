@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     minWidth: "80%",
     height: 460,
-    margin: 20,
+    marginHorizontal: 20,
     alignSelf: "stretch",
     flexGrow: 0,
   },

@@ -29,7 +29,7 @@ export function AnimatedButton({
     if (correctAnswer !== undefined) {
       animatedBackgroundColor.value = withTiming(
         correctAnswer ? "green" : "red",
-        { duration: 300, easing: Easing.linear }
+        { duration: 600, easing: Easing.linear }
       );
     } else {
       animatedBackgroundColor.value = backgroundColor;
