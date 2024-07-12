@@ -16,10 +16,13 @@ import { storage } from "@/utils/Storage";
 import { SQLiteDatabase, useSQLiteContext } from "expo-sqlite";
 import { Quiz } from "@/utils/Types";
 import { getRandomUnansweredQuiz } from "@/utils/Database";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 const QuizComponent = () => {
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const backgroundColor = useThemeColor({}, "background");
   const db = useSQLiteContext();
   const opacity = useSharedValue(1);
   const translateY = useSharedValue(0);
@@ -41,7 +44,7 @@ const QuizComponent = () => {
     fetchRandomQuiz();
   }, [fetchRandomQuiz]);
 
-  const handlePress = (selectedOption: 0 | 1 | 2) => {
+  const handlePress = () => {
     if (isAnimating) return;
     setIsAnimating(true);
 
@@ -85,21 +88,26 @@ const QuizComponent = () => {
 
   if (!currentQuiz) {
     return (
-      <View style={[defaultStyles.container, styles.loadingContainer]}>
+      <View style={[defaultStyles.container]}>
         <ActivityIndicator size="large" color="black" />
       </View>
     );
   }
 
   return (
-    <ThemedView style={[defaultStyles.container, { paddingTop: 50 }]}>
-      <ThemedText style={[defaultStyles.title]} type="title">
-        Your Daily Quiz
-      </ThemedText>
-      <ThemedText style={[styles.subtext]} type="subtitle">
-        {currentQuiz ? `Question ${currentQuiz.id + 1}` : ""}
-      </ThemedText>
-      <View style={styles.quizContainer}>
+    <SafeAreaView
+      mode="padding"
+      style={[defaultStyles.container, { backgroundColor }]}
+    >
+      <ThemedView style={[defaultStyles.container]}>
+        <View>
+          <ThemedText style={[defaultStyles.title]} type="title">
+            Your Daily Quiz
+          </ThemedText>
+          <ThemedText style={[styles.subtext]} type="subtitle">
+            {currentQuiz ? `Question ${currentQuiz.id + 1}` : ""}
+          </ThemedText>
+        </View>
         <Animated.View style={[animatedStyle, styles.quizCardContainer]}>
           <QuizCard
             quiz={currentQuiz}
@@ -107,19 +115,14 @@ const QuizComponent = () => {
             disabled={isAnimating}
           />
         </Animated.View>
-      </View>
-    </ThemedView>
+      </ThemedView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  quizContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   quizCardContainer: {
-    alignSelf: "stretch",
+    alignSelf: "flex-end",
     marginHorizontal: 20,
   },
   subtext: {
@@ -128,11 +131,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
     paddingVertical: 5,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 

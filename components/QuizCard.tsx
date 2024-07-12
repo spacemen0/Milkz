@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
@@ -17,7 +17,7 @@ const QuizCard = ({
   disabled,
 }: {
   quiz: Quiz;
-  onPress: (option: 0 | 1 | 2) => void;
+  onPress: () => void;
   disabled: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -33,7 +33,7 @@ const QuizCard = ({
   const handlePress = async (index: 0 | 1 | 2) => {
     if (disabled) return;
     setSelectedOption(index);
-    onPress(index);
+    onPress();
     username &&
       (await addAnswerSheet(
         db,
@@ -46,24 +46,30 @@ const QuizCard = ({
   };
 
   return (
-    <ThemedView style={[styles.cardContainer, { borderColor: borderColor }]}>
-      <ThemedText style={styles.cardTitle}>{quiz.question}</ThemedText>
-      <ThemedText
-        style={styles.cardSubtitle}
-      >{`[${quiz.difficulty}]`}</ThemedText>
-      <ThemedText style={styles.cardSubtitle}>{`[${quiz.genre}]`}</ThemedText>
-      {quiz.answers.map((text, index) => (
-        <AnimatedButton
-          text={text}
-          key={index}
-          style={styles.wideButton}
-          onPress={() => handlePress(index as 0 | 1 | 2)}
-          disabled={disabled}
-          correctAnswer={
-            selectedOption === index ? index === quiz.correctAnswer : undefined
-          }
-        />
-      ))}
+    <ThemedView style={[styles.cardContainer, { borderColor }]}>
+      <View>
+        <ThemedText style={styles.cardTitle}>{quiz.question}</ThemedText>
+        <ThemedText
+          style={styles.cardSubtitle}
+        >{`[${quiz.difficulty}]`}</ThemedText>
+        <ThemedText style={styles.cardSubtitle}>{`[${quiz.genre}]`}</ThemedText>
+      </View>
+      <View>
+        {quiz.answers.map((text, index) => (
+          <AnimatedButton
+            text={text}
+            key={index}
+            style={styles.wideButton}
+            onPress={() => handlePress(index as 0 | 1 | 2)}
+            disabled={disabled}
+            correctAnswer={
+              selectedOption === index
+                ? index === quiz.correctAnswer
+                : undefined
+            }
+          />
+        ))}
+      </View>
     </ThemedView>
   );
 };
@@ -74,7 +80,9 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 12,
     paddingVertical: 30,
+    justifyContent: "space-around",
     minWidth: "80%",
+    height: 460,
     margin: 20,
     alignSelf: "stretch",
     flexGrow: 0,
