@@ -23,7 +23,7 @@ const MIN_PASSWORD_LENGTH = 6;
 export default function AuthPage() {
   const { type } = useLocalSearchParams<{ type: string }>();
   const router = useRouter();
-  const placeholderTextColor = useThemeColor({}, "text");
+  const themedTextColor = useThemeColor({}, "text");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const db = useSQLiteContext();
@@ -94,16 +94,22 @@ export default function AuthPage() {
             placeholder="Username"
             value={username}
             onChangeText={(text) => setUsername(text.trim())}
-            style={styles.inputField}
-            placeholderTextColor={placeholderTextColor}
+            style={[
+              styles.inputField,
+              { borderColor: themedTextColor, color: themedTextColor },
+            ]}
+            placeholderTextColor={themedTextColor}
           />
           <TextInput
             placeholder="Password"
             value={password}
             onChangeText={(text) => setPassword(text.trim())}
             secureTextEntry
-            style={styles.inputField}
-            placeholderTextColor={placeholderTextColor}
+            style={[
+              styles.inputField,
+              { borderColor: themedTextColor, color: themedTextColor },
+            ]}
+            placeholderTextColor={themedTextColor}
           />
         </View>
 
